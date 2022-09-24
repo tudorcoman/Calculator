@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ControllerCalculator {
 
     @IBOutlet weak var firstNumber: UITextField!
     
@@ -24,9 +24,23 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func sum(_ sender: Any) {
-        
+    func generalOperation(op: Operator) {
         if let userFirstNumber = Int(firstNumber.text!) {
+            throwError.text = " "
+            if let userSecondnumber = Int(secondNumber.text!){
+                userResult = executeOperation(userFirstNumber, secondNumber: userSecondnumber, op: op)
+                result.text = String(userResult)
+            }else{
+                throwError.text = "Please! Just enter number"
+            }
+        }else{
+            throwError.text = "Please! Just enter number"
+        }
+    }
+    
+    @IBAction func sum(_ sender: Any) {
+        generalOperation(op: Operator.plus)
+        /*if let userFirstNumber = Int(firstNumber.text!) {
             throwError.text = " "
             if let userSecondnumber = Int(secondNumber.text!){
                 userResult = userFirstNumber + userSecondnumber
@@ -36,13 +50,13 @@ class ViewController: UIViewController {
             }
         }else{
             throwError.text = "Please! Just enter number"
-        }
+        }*/
         
     }
     
     @IBAction func minus(_ sender: Any) {
-        
-        if let userFirstNumber = Int(firstNumber.text!) {
+        generalOperation(op: Operator.minus)
+        /*if let userFirstNumber = Int(firstNumber.text!) {
             throwError.text = " "
             if let userSecondnumber = Int(secondNumber.text!){
                 userResult = userFirstNumber - userSecondnumber
@@ -52,12 +66,12 @@ class ViewController: UIViewController {
             }
         }else{
             throwError.text = "Please! Just enter number"
-        }
+        }*/
     }
     
     @IBAction func multiple(_ sender: Any) {
-        
-        if let userFirstNumber = Int(firstNumber.text!) {
+        generalOperation(op: Operator.multiply)
+        /*if let userFirstNumber = Int(firstNumber.text!) {
             throwError.text = " "
             if let userSecondnumber = Int(secondNumber.text!){
                 userResult = userFirstNumber * userSecondnumber
@@ -67,12 +81,12 @@ class ViewController: UIViewController {
             }
         }else{
             throwError.text = "Please! Just enter number"
-        }
+        }*/
     }
     
     @IBAction func divide(_ sender: Any) {
-        
-        if let userFirstNumber = Int(firstNumber.text!) {
+        generalOperation(op: Operator.divide)
+        /*if let userFirstNumber = Int(firstNumber.text!) {
             throwError.text = " "
             if let userSecondnumber = Int(secondNumber.text!){
                 userResult = userFirstNumber / userSecondnumber
@@ -82,7 +96,7 @@ class ViewController: UIViewController {
             }
         }else{
             throwError.text = "Please! Just enter number"
-        }
+        }*/
     }
     
 }
